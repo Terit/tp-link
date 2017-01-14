@@ -1,0 +1,33 @@
+{
+  "name": "SmartPlug",
+  "short_name": "SmartPlug",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#007f00",
+  "description": "Control all TP-Link Smartplugs on the Network.",
+  "icons": [{
+    "src": "/icon.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "/icon.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "/icon.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "/icon.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "/icon.png",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "/icon.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

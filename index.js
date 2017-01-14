@@ -1,9 +1,16 @@
 const Hs100Api = require('hs100-api');
 const client = new Hs100Api.Client({ broadcast: '192.168.1.255' });
-const app = require('express')();
+const express = require('express');
+const app = express();
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
 app.get('/', (req, res) => {
   // Look for plugs
@@ -27,4 +34,4 @@ app.get('/ip/:ip', (req, res) => {
   }); 
 });
 
-app.listen(3000);
+app.listen(3001);
