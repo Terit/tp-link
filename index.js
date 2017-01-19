@@ -8,11 +8,6 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-});
-
 app.get('/', (req, res) => {
   if (plugs.length > 0) return res.render('index', { plugs });
   // Look for plugs
@@ -36,9 +31,19 @@ app.get('/ip/:ip', (req, res) => {
       plug.setPowerState(!state);
       res.json({ip: req.params.ip, state: !state});
     }).catch(err => {
-      plugs = plugs.filter(plug => plug.ip !== req.params.ip);
+      plugs = plugs.filter(plug => plug.ip != req.params.ip);
       res.status(410).send(err);
     });
 });
 
-app.listen(3001);
+app.get('/reset', (req, res) => {
+  plugs = plugs.slice();
+  res.redirect('/');
+})
+
+app.use(function (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+});
+
+app.listen(3000);

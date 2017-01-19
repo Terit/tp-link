@@ -12,22 +12,14 @@
   <body>
     <div class="container">
       <h1>PLUGS</h1>
+      <a href="/reset">Reset Plugs</a>
       <ul>
         <% plugs.forEach(function(plug){ %>
           <li><%= plug.sysInfo.alias %> - <%= plug.sysInfo.model %> <button ip=<%= plug.ip %> class="status <%= plug.state ? 'status--on' : '' %>"></button></li>
         <% }); %>
       </ul>
     </div>
-    <script>
-      function toggleState (evt) {
-        const ip = evt.currentTarget.getAttribute('ip')
-        fetch(`/ip/${ip}`).then(response => response.json().then(json => {
-          const light = document.querySelector(`.status[ip="${json.ip}"]`)
-          light.classList = json.state ? 'status status--on' : 'status'
-        })).catch(console.error);
-      }
-      document.querySelector('.status').addEventListener('click', toggleState);
-    </script>
+    <script src="/script.js"></script>
     <script src="/sw_register.js"></script>
   </body>
 </html>
